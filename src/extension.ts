@@ -20,12 +20,13 @@ async function fetchCodeSuggestion(codeContext: String): Promise<string> {
 		// const response = await axios.post(postUrl, body); // Replace with your API endpoint
 		// console.log(response);
 		const getUrl = baseGetUrl.concat(basePrompt).concat(codeContext.toString());
+		console.error('URL', getUrl);
 		const response = await axios.get(getUrl); 
 		// return response.data.choices[0].text as string; // Assuming the API response contains an string
 		return response.data.result as string; // Assuming the API response contains an string
 	} catch (error) {
-	  console.error('Error fetching code from the API:', error);
-	  return ""; // Return an empty string in case of an error
+		console.error('Error fetching code from the API:', error);
+		return ""; // Return an empty string in case of an error
 	}
   }
 
