@@ -7,7 +7,7 @@ import axios from 'axios';
 async function fetchCodeSuggestion(codeContext: String): Promise<string> {
 	try {
 		// const postUrl = "https://api.openai.com/v1/completions";
-		const baseGetUrl = "https://data-exchange-uat-gbm.systems.uk.hsbc/oai/api/chat?msg=";
+		const baseGetUrl = "https://data-exchange-uat-gbm.systems.uk.hsbc/oai/api/oai/chat?msg=";
 		const basePrompt = "Provide the best suggestion of code snippet based on comment given to you below. Your response SHOULD ONLY contains code and comments ! \n\n";
 		// const body = {
 		// 	model: "text-davinci-003",
