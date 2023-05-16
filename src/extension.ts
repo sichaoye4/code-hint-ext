@@ -6,19 +6,23 @@ import axios from 'axios';
 
 async function fetchCodeSuggestion(codeContext: String): Promise<string> {
 	try {
-		const postUrl = "https://api.openai.com/v1/completions";
+		// const postUrl = "https://api.openai.com/v1/completions";
+		const baseGetUrl = "https://data-exchange-uat-gbm.systems.uk.hsbc/oai.api.chat?msg=";
 		const basePrompt = "Provide the best suggestion of code snippet based on comment given to you below. Your response SHOULD ONLY contains code and comments ! \n\n";
-		const body = {
-			model: "text-davinci-003",
-			prompt: basePrompt.concat(codeContext.toString()),
-			max_tokens: 1000,
-			n: 1,
-			temperature: 1.0
-		};
-		console.log(body);
-		const response = await axios.post(postUrl, body); // Replace with your API endpoint
+		// const body = {
+		// 	model: "text-davinci-003",
+		// 	prompt: basePrompt.concat(codeContext.toString()),
+		// 	max_tokens: 1000,
+		// 	n: 1,
+		// 	temperature: 1.0
+		// };
+		// console.log(body);
+		// const response = await axios.post(postUrl, body); // Replace with your API endpoint
 		// console.log(response);
-		return response.data.choices[0].text as string; // Assuming the API response contains an string
+		const getUrl = baseGetUrl.concat(basePrompt).concat(codeContext.toString());
+		const response = await axios.get(getUrl); 
+		// return response.data.choices[0].text as string; // Assuming the API response contains an string
+		return response.data.result as string; // Assuming the API response contains an string
 	} catch (error) {
 	  console.error('Error fetching code from the API:', error);
 	  return ""; // Return an empty string in case of an error
